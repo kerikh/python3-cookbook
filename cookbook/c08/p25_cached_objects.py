@@ -41,10 +41,9 @@ class Spam1:
         print('Spam1__new__')
         if name in cls._spam_cache:
             return cls._spam_cache[name]
-        else:
-            self = super().__new__(cls)
-            cls._spam_cache[name] = self
-            return self
+        self = super().__new__(cls)
+        cls._spam_cache[name] = self
+        return self
 
     def __init__(self, name):
         print('Initializing Spam')
@@ -78,8 +77,8 @@ class Spam2:
     def __init__(self, name):
         self.name = name
 
-    def get_spam(name):
-        return Spam2.manager.get_spam(name)
+    def get_spam(self):
+        return Spam2.manager.get_spam(self)
 
 
 # ------------------------最后的修正方案------------------------

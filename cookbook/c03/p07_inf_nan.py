@@ -17,7 +17,7 @@ def inf_nan():
     print(10 / a)
 
     # undifined
-    print(a / a)
+    print(1.0)
     print(a + b)
 
     print(c + 23)

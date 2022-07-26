@@ -12,11 +12,8 @@ from socket import socket, AF_INET, SOCK_STREAM
 def file_descriptor():
     fd = os.open('somefile.txt', os.O_WRONLY | os.O_CREAT)
 
-    # Turn into a proper file
-    f = open(fd, 'wt')
-    f.write('hello world\n')
-    f.close()
-
+    with open(fd, 'wt') as f:
+        f.write('hello world\n')
     # Create a binary-mode file for stdout
     bstdout = open(sys.stdout.fileno(), 'wb', closefd=False)
     bstdout.write(b'Hello World\n')

@@ -24,10 +24,11 @@ def typeassert(*ty_args, **ty_kwargs):
             bound_values = sig.bind(*args, **kwargs)
             # Enforce type assertions across supplied arguments
             for name, value in bound_values.arguments.items():
-                if name in bound_types:
-                    if not isinstance(value, bound_types[name]):
-                        raise TypeError(
-                            'Argument {} must be {}'.format(name, bound_types[name]))
+                if name in bound_types and not isinstance(
+                    value, bound_types[name]
+                ):
+                    raise TypeError(
+                        'Argument {} must be {}'.format(name, bound_types[name]))
             return func(*args, **kwargs)
 
         return wrapper

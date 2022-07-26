@@ -33,7 +33,7 @@ class Person:
 
 
 def typed_property(name, expected_type):
-    storage_name = '_' + name
+    storage_name = f'_{name}'
 
     @property
     def prop(self):

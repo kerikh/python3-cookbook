@@ -47,15 +47,15 @@ def match_search():
     # 括号捕获分组
     datepat = re.compile(r'(\d+)/(\d+)/(\d+)')
     m = datepat.match('11/27/2012')
-    print(m.group(0))
-    print(m.group(1))
-    print(m.group(2))
-    print(m.group(3))
+    print(m[0])
+    print(m[1])
+    print(m[2])
+    print(m[3])
     print(m.groups())
     month, day, year = m.groups()
     print(datepat.findall(text))
     for month, day, year in datepat.findall(text):
-        print('{}-{}-{}'.format(year, month, day))
+        print(f'{year}-{month}-{day}')
 
 
     # 迭代方式返回匹配

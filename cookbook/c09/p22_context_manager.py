@@ -15,7 +15,7 @@ def timethis(label):
         yield
     finally:
         end = time.time()
-        print('{}: {}'.format(label, end - start))
+        print(f'{label}: {end - start}')
 
 # Example use
 with timethis('counting'):
@@ -40,4 +40,4 @@ class timethis:
 
     def __exit__(self, exc_ty, exc_val, exc_tb):
         end = time.time()
-        print('{}: {}'.format(self.label, end - self.start))
+        print(f'{self.label}: {end - self.start}')

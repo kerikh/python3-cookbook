@@ -21,7 +21,7 @@ class House:
     def __init__(self, name, style):
         self.name = name
         self.style = style
-        self.rooms = list()
+        self.rooms = []
 
     @property
     def living_space_footage(self):
@@ -31,9 +31,7 @@ class House:
         self.rooms.append(room)
 
     def __str__(self):
-        return '{}: {} square foot {}'.format(self.name,
-                                              self.living_space_footage,
-                                              self.style)
+        return f'{self.name}: {self.living_space_footage} square foot {self.style}'
 
     def __eq__(self, other):
         return self.living_space_footage == other.living_space_footage

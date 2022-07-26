@@ -23,14 +23,14 @@ def iterate_index():
 
 
 def parse_data(filename):
-        with open(filename, 'rt') as f:
-            for lineno, line in enumerate(f, 1):
-                fields = line.split()
-                try:
-                    count = int(fields[1])
-                    # ...
-                except ValueError as e:
-                    print('Line {}: Parse error: {}'.format(lineno, e))
+    with open(filename, 'rt') as f:
+        for lineno, line in enumerate(f, 1):
+            fields = line.split()
+            try:
+                count = int(fields[1])
+                # ...
+            except ValueError as e:
+                print(f'Line {lineno}: Parse error: {e}')
 
 
 def word_lines():

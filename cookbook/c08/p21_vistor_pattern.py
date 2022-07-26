@@ -54,14 +54,14 @@ t4 = Add(Number(1), t3)
 
 class NodeVisitor:
     def visit(self, node):
-        methname = 'visit_' + type(node).__name__
+        methname = f'visit_{type(node).__name__}'
         meth = getattr(self, methname, None)
         if meth is None:
             meth = self.generic_visit
         return meth(node)
 
     def generic_visit(self, node):
-        raise RuntimeError('No {} method'.format('visit_' + type(node).__name__))
+        raise RuntimeError(f'No visit_{type(node).__name__} method')
 
 
 class Evaluator(NodeVisitor):
@@ -124,7 +124,7 @@ class StackCode(NodeVisitor):
 
 class HTTPHandler:
     def handle(self, request):
-        methname = 'do_' + request.request_method
+        methname = f'do_{request.request_method}'
         getattr(self, methname)(request)
     def do_GET(self, request):
         pass

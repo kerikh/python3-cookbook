@@ -40,10 +40,10 @@ def read_polys(filename):
         file_code, min_x, min_y, max_x, max_y, num_polys = \
             struct.unpack('<iddddi', header)
         polys = []
-        for n in range(num_polys):
+        for _ in range(num_polys):
             pbytes, = struct.unpack('<i', f.read(4))
             poly = []
-            for m in range(pbytes // 16):
+            for _ in range(pbytes // 16):
                 pt = struct.unpack('<dd', f.read(16))
                 poly.append(pt)
             polys.append(poly)

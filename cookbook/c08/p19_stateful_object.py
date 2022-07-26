@@ -130,20 +130,14 @@ class State:
 
 class State_A(State):
     def action(self, x):
-        # Action for A
-        pass
         self.new_state(State_B)
 
 
 class State_B(State):
     def action(self, x):
-        # Action for B
-        pass
         self.new_state(State_C)
 
 
 class State_C(State):
     def action(self, x):
-        # Action for C
-        pass
         self.new_state(State_A)

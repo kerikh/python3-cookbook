@@ -30,7 +30,7 @@ class NoMixedCaseMeta(type):
     def __new__(cls, clsname, bases, clsdict):
         for name in clsdict:
             if name.lower() != name:
-                raise TypeError('Bad attribute name: ' + name)
+                raise TypeError(f'Bad attribute name: {name}')
         return super().__new__(cls, clsname, bases, clsdict)
 
 
@@ -58,9 +58,7 @@ class MatchSignaturesMeta(type):
         for name, value in clsdict.items():
             if name.startswith('_') or not callable(value):
                 continue
-            # Get the previous definition (if any) and compare the signatures
-            prev_dfn = getattr(sup,name,None)
-            if prev_dfn:
+            if prev_dfn := getattr(sup, name, None):
                 prev_sig = signature(prev_dfn)
                 val_sig = signature(value)
                 if prev_sig != val_sig:

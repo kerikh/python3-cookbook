@@ -62,7 +62,6 @@ from functools import partial
 
 conn = LazyConnection2(('www.python.org', 80))
 with conn as s1:
-    pass
     with conn as s2:
         pass
     # s1 and s2 are independent sockets

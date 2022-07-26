@@ -27,9 +27,14 @@ def start_end():
 
     # 切片实现，看上去不美
     filename = 'spam.txt'
-    print(filename[-4:] == '.txt')
+    print(filename.endswith('.txt'))
     url = 'http://www.python.org'
-    print(url[:5] == 'http:' or url[:6] == 'https:' or url[:4] == 'ftp:')
+    print(
+        url.startswith('http:')
+        or url.startswith('https:')
+        or url.startswith('ftp:')
+    )
+
 
     # 正则式实现
     url = 'http://www.python.org'
@@ -37,11 +42,10 @@ def start_end():
 
 
 def read_data(name):
-        if name.startswith(('http:', 'https:', 'ftp:')):
-            return urlopen(name).read()
-        else:
-            with open(name) as f:
-                return f.read()
+    if name.startswith(('http:', 'https:', 'ftp:')):
+        return urlopen(name).read()
+    with open(name) as f:
+        return f.read()
 
 if __name__ == '__main__':
     start_end()

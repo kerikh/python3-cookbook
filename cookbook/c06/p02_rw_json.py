@@ -20,21 +20,17 @@ class Point:
 
 
 def serialize_instance(obj):
-    d = {'__classname__': type(obj).__name__}
-    d.update(vars(obj))
-    return d
+    return {'__classname__': type(obj).__name__} | vars(obj)
 
 
 def unserialize_object(d):
-    clsname = d.pop('__classname__', None)
-    if clsname:
-        cls = classes[clsname]
-        obj = cls.__new__(cls)  # Make instance without calling __init__
-        for key, value in d.items():
-            setattr(obj, key, value)
-            return obj
-    else:
+    if not (clsname := d.pop('__classname__', None)):
         return d
+    cls = classes[clsname]
+    obj = cls.__new__(cls)  # Make instance without calling __init__
+    for key, value in d.items():
+        setattr(obj, key, value)
+        return obj
 
 # Dictionary mapping names to known classes
 classes = {

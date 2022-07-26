@@ -23,7 +23,7 @@ class Typed(Descriptor):
 
     def __set__(self, instance, value):
         if not isinstance(value, self.expected_type):
-            raise TypeError('expected ' + str(self.expected_type))
+            raise TypeError(f'expected {str(self.expected_type)}')
         super().__set__(instance, value)
 
 
@@ -43,7 +43,7 @@ class MaxSized(Descriptor):
 
     def __set__(self, instance, value):
         if len(value) >= self.size:
-            raise ValueError('size must be < ' + str(self.size))
+            raise ValueError(f'size must be < {str(self.size)}')
         super().__set__(instance, value)
 
 
@@ -145,7 +145,7 @@ def Typed(expected_type, cls=None):
 
     def __set__(self, instance, value):
         if not isinstance(value, expected_type):
-            raise TypeError('expected ' + str(expected_type))
+            raise TypeError(f'expected {str(expected_type)}')
         super_set(self, instance, value)
 
     cls.__set__ = __set__
@@ -180,7 +180,7 @@ def MaxSized(cls):
 
     def __set__(self, instance, value):
         if len(value) >= self.size:
-            raise ValueError('size must be < ' + str(self.size))
+            raise ValueError(f'size must be < {str(self.size)}')
         super_set(self, instance, value)
 
     cls.__set__ = __set__

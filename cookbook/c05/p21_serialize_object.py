@@ -22,12 +22,10 @@ def serailize_object():
     # Restore from a string
     data = pickle.loads(s)
 
-    f = open('somedata', 'wb')
-    pickle.dump([1, 2, 3, 4], f)
-    pickle.dump('hello', f)
-    pickle.dump({'Apple', 'Pear', 'Banana'}, f)
-    f.close()
-
+    with open('somedata', 'wb') as f:
+        pickle.dump([1, 2, 3, 4], f)
+        pickle.dump('hello', f)
+        pickle.dump({'Apple', 'Pear', 'Banana'}, f)
     f = open('somedata', 'rb')
     print(pickle.load(f))
     print(pickle.load(f))

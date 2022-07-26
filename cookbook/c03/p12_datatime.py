@@ -24,7 +24,7 @@ def date_time():
     b = datetime(2012, 12, 21)
     d = b - a
     print(d.days)
-    now = datetime.today()
+    now = datetime.now()
     print(now)
     print(now + timedelta(minutes=10))
 

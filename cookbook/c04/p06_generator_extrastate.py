@@ -27,7 +27,7 @@ def gen_extrastate():
         for line in lines:
             if 'python' in line:
                 for lineno, hline in lines.history:
-                    print('{}:{}'.format(lineno, hline), end='')
+                    print(f'{lineno}:{hline}', end='')
 
 
 if __name__ == '__main__':

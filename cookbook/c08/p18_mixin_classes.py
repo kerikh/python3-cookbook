@@ -14,7 +14,7 @@ class LoggedMappingMixin:
     __slots__ = ()  # 混入类都没有实例变量，因为直接实例化混入类没有任何意义
 
     def __getitem__(self, key):
-        print('Getting ' + str(key))
+        print(f'Getting {str(key)}')
         return super().__getitem__(key)
 
     def __setitem__(self, key, value):
@@ -22,7 +22,7 @@ class LoggedMappingMixin:
         return super().__setitem__(key, value)
 
     def __delitem__(self, key):
-        print('Deleting ' + str(key))
+        print(f'Deleting {str(key)}')
         return super().__delitem__(key)
 
 
@@ -34,7 +34,7 @@ class SetOnceMappingMixin:
 
     def __setitem__(self, key, value):
         if key in self:
-            raise KeyError(str(key) + ' already set')
+            raise KeyError(f'{str(key)} already set')
         return super().__setitem__(key, value)
 
 
@@ -79,7 +79,7 @@ def LoggedMapping(cls):
     cls_delitem = cls.__delitem__
 
     def __getitem__(self, key):
-        print('Getting ' + str(key))
+        print(f'Getting {str(key)}')
         return cls_getitem(self, key)
 
     def __setitem__(self, key, value):
@@ -87,7 +87,7 @@ def LoggedMapping(cls):
         return cls_setitem(self, key, value)
 
     def __delitem__(self, key):
-        print('Deleting ' + str(key))
+        print(f'Deleting {str(key)}')
         return cls_delitem(self, key)
 
     cls.__getitem__ = __getitem__

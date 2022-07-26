@@ -25,12 +25,13 @@ def cb_filter():
             return True
         except ValueError:
             return False
+
     ivals = list(filter(is_int, values))
     print(ivals)
     # Outputs ['1', '2', '-3', '4', '5']
 
     # 条件过滤
-    clip_neg = [n if n > 0 else 0 for n in mylist]
+    clip_neg = [max(n, 0) for n in mylist]
     print(clip_neg)
 
     addresses = [

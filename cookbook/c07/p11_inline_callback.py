@@ -53,9 +53,9 @@ def add(x, y):
 def test():
     print('start'.center(20, '='))
     r = yield Async(add, (2, 3))
-    print('last={}'.format(r))
+    print(f'last={r}')
     r = yield Async(add, ('hello', 'world'))
-    print('last={}'.format(r))
+    print(f'last={r}')
     # for n in range(10):
     # r = yield Async(add, (n, n))
     # print(r)

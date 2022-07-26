@@ -38,14 +38,14 @@ if __name__ == '__main__':
 
     # 增量式读取
     with open('data.b','rb') as f:
-        for rec in read_records('<idd', f):
+        for _ in read_records('<idd', f):
             # Process rec
             pass
 
     # 一次性读取，再分片解析
     with open('data.b', 'rb') as f:
         data = f.read()
-    for rec in unpack_records('<idd', data):
+    for _ in unpack_records('<idd', data):
         # Process rec
         pass
 

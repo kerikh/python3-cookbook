@@ -31,13 +31,9 @@ class MultiMethod:
             if name == 'self':
                 continue
             if parm.annotation is inspect.Parameter.empty:
-                raise TypeError(
-                    'Argument {} must be annotated with a type'.format(name)
-                )
+                raise TypeError(f'Argument {name} must be annotated with a type')
             if not isinstance(parm.annotation, type):
-                raise TypeError(
-                    'Argument {} annotation must be a type'.format(name)
-                )
+                raise TypeError(f'Argument {name} annotation must be a type')
             if parm.default is not inspect.Parameter.empty:
                 self._methods[tuple(types)] = meth
             types.append(parm.annotation)
@@ -49,20 +45,16 @@ class MultiMethod:
         Call a method based on type signature of the arguments
         '''
         types = tuple(type(arg) for arg in args[1:])
-        meth = self._methods.get(types, None)
-        if meth:
+        if meth := self._methods.get(types, None):
             return meth(*args)
         else:
-            raise TypeError('No matching method for types {}'.format(types))
+            raise TypeError(f'No matching method for types {types}')
 
     def __get__(self, instance, cls):
         '''
         Descriptor method needed to make calls work in a class
         '''
-        if instance is not None:
-            return types.MethodType(self, instance)
-        else:
-            return self
+        return types.MethodType(self, instance) if instance is not None else self
 
 
 class MultiDict(dict):
@@ -140,17 +132,13 @@ class multimethod:
 
     def __call__(self, *args):
         types = tuple(type(arg) for arg in args[1:])
-        meth = self._methods.get(types, None)
-        if meth:
+        if meth := self._methods.get(types, None):
             return meth(*args)
         else:
             return self._default(*args)
 
     def __get__(self, instance, cls):
-        if instance is not None:
-            return types.MethodType(self, instance)
-        else:
-            return self
+        return types.MethodType(self, instance) if instance is not None else self
 
 
 class Spam:

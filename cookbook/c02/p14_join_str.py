@@ -36,13 +36,13 @@ def join_str():
     a = 'Is Chicago'
     b = 'Not Chicago?'
     c = 'ccc'
-    print(a + ' ' + b)
+    print(f'{a} {b}')
 
     data = ['ACME', 50, 91.1]
     print(','.join(str(d) for d in data))
 
 
-    print(a + ':' + b + ':' + c)  # Ugly
+    print(f'{a}:{b}:{c}')
     print(':'.join([a, b, c]))  # Still ugly
     print(a, b, c, sep=':')  # Better
 
